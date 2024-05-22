@@ -1,0 +1,69 @@
+<div class="container">
+  <div class="header">
+    <div class="header__logo">
+      <img src="../../../assets/logo.svg" alt="Marvel Logo" />
+    </div>
+    <div class="header__search">
+      <div class="header__search__search-bar">
+        <input
+          #searchBar
+          class="header__search__search-bar__input"
+          [(ngModel)]="searchValue"
+          (keyup)="filterCharacters($event)"
+          placeholder="Search by name..."
+        />
+        <button
+          class="header__search__search-bar__clear"
+          (click)="searchValue = ''; getCharacters()"
+          *ngIf="searchValue !== ''"
+        >
+          <fa-icon class="clear-icon" [icon]="faClose"></fa-icon>
+        </button>
+      </div>
+      <button class="header__search__search-button" (click)="filterCharacters($event)">Search</button>
+    </div>
+    <div class="header__filter">
+      <app-events-filter (selectedEventID)="selectEvent($event)"></app-events-filter>
+    </div>
+  </div>
+  <div class="content" *ngIf="characters.total > 0">
+    <div class="content__pages">
+      <span class="page" *ngIf="currentPage != 0">
+        <button (click)="changeCurrentPage(currentPage - 1)">Previous page</button>
+      </span>
+
+      <span class="page">{{ currentPage + 1 }} </span>
+
+      <span class="page" *ngIf="currentPage <= totalPages">
+        <button (click)="changeCurrentPage(currentPage + 1)">Next page</button>
+      </span>
+    </div>
+    <div class="content__characters">
+      <div *ngFor="let character of characters.list">
+        @defer {
+        <app-character-card [character]="character" />
+        } @placeholder (minimum 1000ms) {
+        <ngx-skeleton-loader [theme]="{ height: '250px', 'border-radius': '0' }" />
+        }
+      </div>
+    </div>
+    <div class="content__pages">
+      <span class="page" *ngIf="currentPage != 0">
+        <button (click)="changeCurrentPage(currentPage - 1)">Previous page</button>
+      </span>
+
+      <span class="page">{{ currentPage + 1 }} </span>
+
+      <span class="page" *ngIf="currentPage <= totalPages">
+        <button (click)="changeCurrentPage(currentPage + 1)">Next page</button>
+      </span>
+    </div>
+  </div>
+  @defer {
+  <div class="content--nodata" *ngIf="characters.total == 0">No data</div>
+  } @placeholder (minimum 2000ms) {
+  <div class="content__characters">
+    <ngx-skeleton-loader count="12" [theme]="{ height: '250px', 'border-radius': '0' }" />
+  </div>
+  }
+</div>

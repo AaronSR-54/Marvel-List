@@ -1,0 +1,54 @@
+<div class="content" *ngIf="events.total > 0">
+  <div class="content__search">
+    <div class="content__search__search-bar">
+      <input
+        #searchBar
+        class="content__search__search-bar__input"
+        [(ngModel)]="searchValue"
+        (keyup)="filterEvents($event)"
+        placeholder="Filter by event..."
+      />
+      <button
+        class="content__search__search-bar__clear"
+        (click)="searchValue = ''; getEvents()"
+        *ngIf="searchValue !== ''"
+      >
+        <fa-icon class="clear-icon" [icon]="faClose"></fa-icon>
+      </button>
+    </div>
+    <button class="content__search__search-button" (click)="filterEvents($event)">Filter</button>
+  </div>
+  <div class="content__events">
+    <div class="content__events__event" *ngFor="let event of events.list; let i = index">
+      @defer {
+      <div class="card" id="card {{ i }}" (click)="selectEvent(event, i)">
+        <img class="card__cover" src="{{ event.cover }}" alt="{{ event.title }} cover" />
+        <div class="card__text">
+          <span class="card__text__title">{{ event.title }}</span>
+        </div>
+      </div>
+      } @placeholder (minimum 1000ms) {
+      <ngx-skeleton-loader [theme]="{ height: '100px', 'background-color': '#858585', 'border-radius': '0' }" />
+      }
+    </div>
+  </div>
+  <div class="content__pages">
+    <span class="page" *ngIf="currentPage != 0">
+      <button (click)="changeCurrentPage(currentPage - 1)">Previous page</button>
+    </span>
+
+    <span class="page">{{ currentPage + 1 }} </span>
+
+    <span class="page" *ngIf="currentPage <= totalPages">
+      <button (click)="changeCurrentPage(currentPage + 1)">Next page</button>
+    </span>
+  </div>
+</div>
+
+@defer {
+<div class="content--nodata" *ngIf="events.total == 0">Filtering by event is currently available...</div>
+} @placeholder (minimum 2000ms) {
+<div class="content__events">
+  <ngx-skeleton-loader count="5" [theme]="{ height: '100px', 'background-color': '#858585', 'border-radius': '0' }" />
+</div>
+}

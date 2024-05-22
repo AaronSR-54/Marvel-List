@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  background: rgb(248, 248, 248);
+  background: radial-gradient(circle, rgba(248, 248, 248, 1) 0%, rgba(230, 230, 230, 1) 100%);
+}
+
+* {
+  border: none;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background: none;
+}
+
+*:hover,
+*:focus,
+*:active {
+  box-shadow: 0;
+  outline: none;
+}

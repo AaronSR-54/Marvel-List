@@ -1,0 +1,167 @@
+.container {
+  max-width: 860px;
+  padding: 50px 0;
+  margin-inline: auto;
+
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+
+  @media (max-width: 992px) {
+    max-width: 576px;
+  }
+
+  @media (max-width: 576px) {
+    padding-inline: 32px;
+  }
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  &__logo {
+    display: flex;
+    justify-content: center;
+
+    img {
+      width: 40%;
+      object-fit: contain;
+    }
+  }
+
+  &__search {
+    width: 100%;
+    display: inline-flex;
+    gap: 8px;
+
+    &__search-bar {
+      width: 100%;
+      position: relative;
+
+      &__input {
+        border: 2px solid #ef1029;
+        padding: 4px 8px;
+        width: 100%;
+        transition: all 0.3s ease;
+        font-weight: 600;
+        color: #d10d24;
+
+        &::placeholder {
+          font-weight: 400;
+          font-size: 14px;
+          color: #b3b3b3;
+        }
+
+        &:hover {
+          border-color: #c00e23;
+          transition: all 0.3s ease;
+        }
+
+        &:focus,
+        &:active {
+          border-color: #d10d24;
+          padding: 8px;
+          transition: all 0.3s ease;
+        }
+      }
+
+      &__clear {
+        position: absolute;
+        right: 12px;
+        top: 50%;
+        transform: translate(0, -50%);
+
+        .clear-icon {
+          font-size: 22px;
+          color: #c00e23;
+        }
+      }
+    }
+
+    &__search-button {
+      background-color: #ef1029;
+      color: white;
+      font-family: 'Bebas Neue', sans-serif;
+      padding: 0 8px;
+
+      &:hover {
+        background-color: #c00e23;
+      }
+
+      &:focus,
+      &:active {
+        background-color: #d10d24;
+      }
+    }
+  }
+
+  &__filter {
+    padding: 12px;
+    background-color: #515151;
+  }
+
+  @media (max-width: 576px) {
+    &__logo {
+      img {
+        width: 100%;
+      }
+    }
+  }
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  &__characters {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 32px;
+
+    @media (max-width: 992px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    @media (max-width: 576px) {
+      grid-template-columns: repeat(1, 1fr);
+    }
+  }
+
+  &__pages {
+    display: inline-flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 8px;
+
+    .page {
+      color: #ef1029;
+      font-size: 12px;
+      font-weight: 700;
+
+      button {
+        background-color: #ef1029;
+        padding: 2px 4px;
+        color: #fafafa;
+        font-size: 10px;
+        font-weight: 500;
+
+        &:hover {
+          background-color: #c00e23;
+        }
+
+        &:active {
+          background-color: #d10d24;
+        }
+      }
+    }
+  }
+
+  &--nodata {
+    margin-inline: auto;
+    color: #ef1029;
+    font-size: 12px;
+  }
+}

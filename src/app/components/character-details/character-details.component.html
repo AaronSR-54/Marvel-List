@@ -1,0 +1,20 @@
+<div class="container">
+  <div class="back">
+    <fa-icon class="back__icon" [icon]="faArrowLeft"></fa-icon>
+    <button class="back__button" (click)="navigateToBack()">Go back</button>
+  </div>
+  <div class="content">
+    <img class="content__cover" src="{{ character.cover }}" alt="{{ character.name }} cover" />
+    <div class="content__text">
+      <div class="content__text__title">
+        <span class="content__text__title__name">{{ character.name }}</span>
+        <span class="content__text__title__alter">{{ character.alter }}</span>
+      </div>
+      <div class="content__text__description">
+        <p>
+          {{ character.description }}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
